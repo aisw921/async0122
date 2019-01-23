@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <title>testAsync</title>
+    </head>
+    <body>
+        <script>
+            // async function timeout(ms) {
+            //     await new Promise((resolve) => {
+            //         setTimeout(resolve, ms);
+            //     });
+            // }
+            // async function asyncPrint(value, ms) {
+            //     await timeout(ms);
+            //     console.log(value);
+            // }
+            // asyncPrint('hello', 50)
+
+            // async function foo() {}
+            // const foo = async function() {}
+
+            // let obj = { async foo() {} };
+            // obj.foo().then(...)
+
+            // const foo = async () => {}
+
+            // async function f() {
+            //     return await 'hello world';
+            // }
+            // f().then(v => console.log(v))
+
+            // class Sleep {
+            //     constructor(timeout) {
+            //         this.timeout = timeout;
+            //     }
+            //     then(resolve, reject) {
+            //         const startTime = Date.now();
+            //         setTimeout(
+            //             () => resolve(Date.now() - startTime),
+            //             this.timeout
+            //         );
+            //     }
+            // }
+            // (async () => {
+            //     const actualTime = await new Sleep(1000);
+            //     console.log(actualTime);
+            // })();
+
+            // async function f() {
+            //     await Promise.reject('wrong')
+            //     .catch(e => console.log(e));
+            //     return await Promise.resolve('ok');
+            // }
+            // f()
+            // .then(v => console.log(v))
+            // .catch(e => console.log(e))
+
+            // async function f() {
+            //     try {
+            //        const val1 = await firstStep();
+            //        const val2 = await secondStrp(val1);
+            //        const val3 = await thirdStep(val1, val2);
+
+            //        console.log('Final: ', val3);
+            //     } catch(e) {
+            //         console.log(e)
+            //     }
+               
+            // }
+
+            // const superagent = require('superagent');
+            // const NUM_RETRIES = 3;
+
+            // async function test() {
+            //     let i = 0;
+            //     for(i = 0; i< NUM_RETRIES; ++i) {
+            //         try {
+            //             await superagent.get('http://www.baidu.com');
+            //             break;
+            //         } catch(e){}
+            //     }
+            //     console.log(i)
+            // }
+            // test();
+         
+            // async function myFunction() {
+            //     try {
+            //         await someThing();
+            //     } catch (e) {
+            //         console.log(e)
+            //     }
+            // }
+
+            // async function myFunction() {
+            //     await someThing()
+            //     .catch(e => console.log(e))
+            // }
+            
+            // let foo = await getFoo();
+            // let bar = await getBar();
+            // let [foo, bar] = await Promise.all([getFoo(), getBar()]);
+
+            // let fooPromise = getFoo();
+            // let barPromise = getBar();
+
+            // let foo = await fooPromise;
+            // let bar = await barPromise;
+
+
+            // async function dbFuc(db) {
+            //     let docs = [{}, {}, {}];
+            //     for(let doc of docs) {
+            //         await db.post(doc);
+            //     }
+            // }
+
+            // async function dbFuc(db) {
+            //     let docs = [{}, {}, {}];
+            //     let promise = docs.map((doc) => db.post(doc));
+
+            //     let result = await Promise.all(promise);
+            //     console.log(result);
+            // }
+
+            // async function dbFuc(db) {
+            //     let docs = [{}, {}, {}];
+            //     let promises = docs.map((doc) => db.post(doc));
+
+            //     let results = [];
+            //     for(let promise of promises) {
+            //         results.push(await promise);
+            //     }
+            //     console.log(results);
+            // }
+
+            // const start = async () => {
+            //     const res = await fetch('google.com');
+            //     return res.text();
+            // };
+
+            // start().then(console.log);
+
+            // const res = await fetch('google.com');
+            // console.log(await res.text());
+
+            // const a = async () => {
+            //     await b()
+            //     c();
+            // };
+
+            // function chainAnimationsPromise(elem, animations) {
+            //     let ret = null;
+
+            //     let p = Promise.resolve();
+
+            //     for(let anim of animations) {
+            //         p = p.then(val => {
+            //             ret = val;
+            //             return anim(elem);
+            //         });
+            //     }
+            //     return p.catch(e => {
+
+            //     }).then(() => ret);
+            // }
+
+            // function chainAnimationsGenerator(elem, animations) {
+            //     return spawn(function*() {
+            //         let ret = null;
+            //         try {
+            //             for(let anim of animations) {
+            //                 ret = yield anim(elem);
+            //             }
+            //         } catch(e) {
+
+            //         }
+            //         return ret;
+            //     });
+            // }
+
+            // async function chainAnimationsAsync(elem, animations) {
+            //     let ret = null;
+            //     try {
+            //         for(let anim of animations) {
+            //             ret = await anim(elem);
+            //         }
+            //     } catch(e) {
+            //     }
+            //     return ret;
+            // }
+            
+            // async function logInOrder(urls) {
+            //     for(const url of urls) {
+            //         const response = await fetch(url);
+            //         console.log(await response.text());
+            //     }
+            // }
+
+            // async function logInOrder(urls) {
+            //     //并发
+            //     const textPromises = urls.map(async url => {
+            //         const response = await fetch(url);
+            //         return response.text();
+            //     });
+
+            //     for (const textPromise of textPromises) {
+            //         console.log(await textPromise);
+            //     }
+            // }
+
+            // const asyncIterable = createAsyncIterable(['a', 'b']);
+            // const asyncIterator = asyncIterable[Symbol.asyncIterator]();
+
+            // asyncIterator
+            // .next()
+            // .then(iterResult1 => {
+            //     console.log(iterResult1);
+            //     return asyncIterator.next();
+            // })
+            // .then(iterResult2 => {
+            //     console.log(resule2 => {
+            //         console.log(iterResult2);
+            //         return asyncIterator.next();
+            //     })
+            // })
+            // .then(iterResult3 => {
+            //     console.log(iterResult3);
+            // })
+
+            // async function f() {
+            //     const asyncIterable = createAsyncIterable(['a', 'b']);
+            //     const asyncIterator = asyncIterable[Symbol.asyncIterator]();
+            //     console.log(await asyncIterator.next());
+            //     console.log(await asyncIterator.next());
+            //     console.log(await asyncIterator.next());
+
+            // }
+
+            // const asyncIterable = createAsyncIterable(['a', 'b']);
+            // const asyncIterator = asyncIterable[Symbol.iterator]();
+            // const [{value: v1}, {value: v2}] = await Promise.all([
+            //     asyncIterator.next(), asyncIterator.next()
+            // ]);
+
+            // console.log(v1, v2);
+
+            // async function runner() {
+            //     const writer = openFile('someFile.txt');
+            //     writer.next('hello');
+            //     writer.next('world');
+            //     await writer.return();
+            // }
+            // runner();
+
+            // async function f() {
+            //     for await (const x of ['a', 'b']) {
+            //         console.log(x);
+            //     }
+            // }
+            
+            // f();
+
+
+            // let body = '';
+            // async function f() {
+            //     for await(const data of req) body += data;
+            //     const parsed = JSON.prse(body);
+            //     console.log('got', parsed);
+            // }
+
+            // async function f() {
+            //     try {
+            //         for await (const x of ['a', 'b','c']) {
+            //             console.log(x);
+            //         }
+            //     } catch (e) {
+            //         console.log(e)
+            //     }
+            // }
+            // f();
+
+            // async function* gen() {
+            //     yield 'hello';
+            // }
+            // const genObj = gen();
+            // genObj.next().then(x => console.log(x));
+
+            //同步
+            // function* map(iterable, func) {
+            //     const iter = iterable[Symbol.iterator]();
+            //     while(true) {
+            //         const {value, done} = iter.next();
+            //         if(done) break;
+            //         yield func(value);
+            //     }
+            // }
+
+            // //异步
+            // async function* map(iterable, func) {
+            //     const iter = iterable[Symbol.asyncIteratoe]();
+            //     while(true) {
+            //         const {value, done} = await iter.next();
+            //         if(done) break;
+            //         yield func(value);
+            //     }
+            // }
+            
+            // async function* readLines(path) {
+            //     let file = await fileOpen(path);
+            //     try {
+            //         while(!file.EOF) {
+            //             yield await file.readLine();
+            //         }
+            //     } finally {
+            //         await file.close();
+            //     }
+            // }
+
+            // async function f() {
+            //     let promise = new Promise((resolve, reject) => {
+            //         setTimeout(() => resolve('done!'), 1000)
+            //     })
+            //     let result = await promise;
+            //     console.log(result)
+            // }
+
+            // f();
+
+
+            // class thenable {
+            //     constructor(num) {
+            //         this.num  = num;
+            //     }
+            //     then(resolve, reject) {
+            //         console.log(resolve);
+            //         setTimeout(() => {resolve(this.num*2), 1000})
+            //     }
+            // }
+            // async function f(){
+            //     let result = await new thenable(1);
+            //     console.log(result);
+            // }
+            // f();
+
+            // function doubleAfter2seconds(num) {
+            //     return new Promise((resolve, reject) => {
+            //         setTimeout(() => {
+            //             resolve(2 * num)
+            //         } , 2000)
+            //     })
+            // }
+
+            // async function testResult() {
+            //     let first = await doubleAfter2seconds(30);
+            //     let second = await doubleAfter2seconds(50);
+            //     let third = await doubleAfter2seconds(30);
+            //     console.log(first + second + third);
+            // }
+            // testResult();
+
+            // function timeout(ms) {
+            //     return new Promise((resolve, reject) => {
+            //         setTimeout(resolve, ms)
+            //     })
+            // }
+
+            // async function f(value, ms) {
+            //     let t1 = await timeout(ms);
+            //     console.log(value);
+            // }
+            // f('abc', 1000);
+
+            // async function dbFuc(db) {
+            //     let docs = [{}, {}, {}];
+
+            //     for (let doc of docs) {
+            //         await db.post(doc);
+            //     }
+            // }
+
+           const arr = [
+                {
+                    name: 'file1',
+                    time: 3000
+                },
+                {
+                    name: 'file2',
+                    time: 2000
+                },
+                {
+                    name: 'file3',
+                    time: 5000
+                }
+           ]
+
+
+            function timeout(ms) {
+                return new Promise((resolve, reject) => {
+                    setTimeout(resolve,ms)
+                })
+                
+            }
+            async function test1(arr) {
+                for(let elem of arr) {
+                    await timeout(elem.time);  
+                    console.log(elem.name);
+                } 
+            }
+            test1(arr).then(() => console.log('success'))
+
+
+            // function test2(arr) {
+            //     let promises = arr.map(elem => {
+            //         return new Promise((resolve, reject) => {
+            //             setTimeout(() => {
+            //                 console.log(elem.name);
+            //                 resolve(elem.name)
+            //             }, elem.time)
+            //         })
+            //     })
+            //     let result =  Promise.all(promises)
+            //     .then(() => console.log('success'));
+
+                // arr.forEach(elem => {
+                //      setTimeout(() => console.log(elem.name),elem.time)
+                // });
+
+                 // for(let elem of arr) {
+                //     await new Promise((resolve, reject) => {
+                //     setTimeout(() => console.log(arr.name),arr.time)
+                //     })
+                // }
+               
+            // }
+            // test2(arr);
+
+
+
+            
+
+
+
+
+        </script>
+    </body>
+</html>
