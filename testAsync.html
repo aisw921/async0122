@@ -393,12 +393,27 @@
                 }
            ]
 
+           const arr2 = [
+                {
+                    name: 'file1',
+                    time: 3000
+                },
+                {
+                    name: 'file2',
+                    time: 2000
+                },
+                {
+                    name: 'file3',
+                    time: 5000
+                }
+           ]
+
 
             function timeout(ms) {
                 return new Promise((resolve, reject) => {
                     setTimeout(resolve,ms)
                 })
-                
+
             }
             async function test1(arr) {
                 for(let elem of arr) {
